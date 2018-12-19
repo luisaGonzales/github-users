@@ -15,8 +15,6 @@ class DetailsScreen extends Component {
 
     return (
       <Container>
-        <Text>Details Screen</Text>
-        <Text>{login}</Text>
         <ReposList login={login} />
       </Container>
     );

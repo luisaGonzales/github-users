@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, List, Left, Right, ListItem, Thumbnail, Body, Content} from 'native-base';
+import {Text, List, Left, Right, ListItem, Body, Content} from 'native-base';
 import GET_REPOS from '../Querys/getRepos';
 import { Query } from "react-apollo";
+import styles from '../Styles/ListItemRepoStyle';
 
 const ReposList = ({login, navigation}) => (
   <Query
@@ -21,15 +22,16 @@ const ReposList = ({login, navigation}) => (
           data.user.repositories.nodes.map((repo, index) => (
               <ListItem avatar
                   key={index}
+                  style={styles.listItemRepoContainer }
                 >
-                  <Body>
+                  <Body style={styles.noneBorder}>
                     <Text>
                       {repo.name}
                     </Text>
-                    <Text note>{repo.description}</Text>
+                    <Text style={styles.subtitle} note>{repo.description}</Text>
                   </Body>
-                  <Right>
-                    <Text>PR Count: {repo.pullRequests.totalCount}</Text>
+                  <Right style={styles.noneBorder}>
+                    <Text style={styles.subtitle}>PR Count: {repo.pullRequests.totalCount}</Text>
                   </Right>
               </ListItem>
               ))
