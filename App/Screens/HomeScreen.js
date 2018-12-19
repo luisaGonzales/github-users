@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, Container, View, Item, Input, Icon} from 'native-base';
 import UsersList from '../Components/UsersListQuery'; 
-import styles from './Styles/HomeScreenStyles';
+import styles from '../Styles/HomeScreenStyles';
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -10,7 +10,7 @@ class HomeScreen extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = {text: undefined};
   }
 
   render() {
@@ -32,7 +32,9 @@ class HomeScreen extends Component {
               />
           </Item>
         </View>
-        <UsersList user={this.state.text} navigation={this.props.navigation}/>
+        {
+          this.state.text != undefined && <UsersList user={this.state.text} navigation={this.props.navigation}/>
+        }
       </Container>
     );
   }

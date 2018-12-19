@@ -2,16 +2,24 @@ import React from 'react';
 import {Text, List, Left, ListItem, Thumbnail, Body, Content} from 'native-base';
 import GET_USERS from '../Querys/getUsers';
 import { Query } from "react-apollo";
+import styles from '../Styles/ListItemStyles';
 
 const UsersList = ({user, navigation}) => (
   <Query
     query={GET_USERS} variables={{user}}
   >
     {({ loading, error, data }) => {
-      if (loading) return <Text>Loading...</Text>;
+      if (loading) {
+        return <Text>Loading...</Text>;
+      }
       if (error) {
         console.warn(error)
-        return <Text>Error :(</Text>;
+        return (
+          Toast.show({
+            text: 'Wrong password!',
+            buttonText: 'Okay'
+          })
+        );
       }
       if (data.search.edges.length > 0) {
         
@@ -25,11 +33,12 @@ const UsersList = ({user, navigation}) => (
                       login: user.node.login
                     })}
                     key={index}
+                    style={styles.listItemContainer}
                   >
                     <Left>
                       <Thumbnail source={{ uri: user.node.avatarUrl }} />
                     </Left>
-                    <Body>
+                    <Body style={styles.listItemBody}>
                       <Text>
                         {user.node.name}, {user.node.location}
                       </Text>
@@ -43,7 +52,7 @@ const UsersList = ({user, navigation}) => (
         )
       } else {
         return (
-          <Text>No Search</Text>
+          <Text></Text>
         )
       }
     }}
