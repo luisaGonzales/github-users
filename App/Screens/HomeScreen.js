@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, Container, Item, Input} from 'native-base';
+import UsersList from '../Components/UsersListQuery'; 
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -22,6 +23,7 @@ class HomeScreen extends Component {
             }}
             />
         </Item>
+        <UsersList user={this.state.text} navigation={this.props.navigation}/>
       </Container>
     );
   }
