@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, Container} from 'native-base';
+import ReposList from './../Components/ReposListQuery';
 
 
 class DetailsScreen extends Component {
@@ -10,12 +11,13 @@ class DetailsScreen extends Component {
   };
   render() {
     const { navigation } = this.props;
-    const login = navigation.getParam('login', 'NO-ID');
+    const login = navigation.getParam('login');
 
     return (
-      <Container style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Container>
         <Text>Details Screen</Text>
         <Text>{login}</Text>
+        <ReposList login={login} />
       </Container>
     );
   }
