@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, List, Left, ListItem, Thumbnail, Body, Content} from 'native-base';
+import {Text, List, Left, Right, ListItem, Thumbnail, Body, Content} from 'native-base';
 import GET_REPOS from '../Querys/getRepos';
 import { Query } from "react-apollo";
 
@@ -13,10 +13,28 @@ const ReposList = ({login, navigation}) => (
         console.warn(error)
         return <Text>Error :(</Text>;
       }
-      console.log(data)
+      console.log(data.user.repositories.nodes.length)
       return (
         <Content>
-          <Text>YEI</Text>
+         <List>
+         {
+          data.user.repositories.nodes.map((repo, index) => (
+              <ListItem avatar
+                  key={index}
+                >
+                  <Body>
+                    <Text>
+                      {repo.name}
+                    </Text>
+                    <Text note>{repo.description}</Text>
+                  </Body>
+                  <Right>
+                    <Text>{repo.pullRequests.totalCount}</Text>
+                  </Right>
+              </ListItem>
+              ))
+            }
+         </List>
         </Content>
       )
     }}
