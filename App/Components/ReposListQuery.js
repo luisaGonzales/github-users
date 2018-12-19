@@ -22,10 +22,10 @@ const ReposList = ({login, navigation}) => (
       return (
         <Content>
          <List>
-         {
-          data.user.repositories.nodes.map((repo, index) => (
-            <RepoItem name={repo.name} description={repo.description} pullRequests={repo.pullRequests.totalCount} key={index} />
-          ))
+          {
+            data.user.repositories.nodes.map((repo, index) => (
+              <RepoItem name={repo.name} description={repo.description} pullRequests={repo.pullRequests.totalCount} key={index} />
+            ))
           }
          </List>
         </Content>
