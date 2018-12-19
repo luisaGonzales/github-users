@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from "apollo-boost";
 import AppContainer from '../routes';
+import token from '../../config';
 
 
-//Set Apollo Client
-const token = '<GITHUB_PERSONAL_ACCESS_TOKEN>';
 const client = new ApolloClient(
   {
     uri: 'https://api.github.com/graphql',
