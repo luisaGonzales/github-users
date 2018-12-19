@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, List, Left, ListItem, Thumbnail, Body, Content} from 'native-base';
-import GET_USERS from '../querys';
+import GET_USERS from '../Querys/getUsers';
 import { Query } from "react-apollo";
 
 const UsersList = ({user, navigation}) => (
@@ -21,7 +21,9 @@ const UsersList = ({user, navigation}) => (
               {
                 data.search.edges.map((user, index) => (
                   <ListItem avatar
-                    onPress={() => navigation.navigate('Details')}
+                    onPress={() => navigation.navigate('Details', {
+                      login: user.node.login
+                    })}
                     key={index}
                   >
                     <Left>
