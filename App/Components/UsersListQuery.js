@@ -3,7 +3,7 @@ import {  ActivityIndicator } from 'react-native';
 import {Text, List, Left, ListItem, Thumbnail, Body, Content, View} from 'native-base';
 import GET_USERS from '../Querys/getUsers';
 import { Query } from "react-apollo";
-import styles from '../Styles/ListItemStyles';
+import UserItem from './UserItem';
 
 const UsersList = ({user, navigation}) => (
   <Query
@@ -29,28 +29,7 @@ const UsersList = ({user, navigation}) => (
             <List>
               {
                 data.search.edges.map((user, index) => (
-                  <ListItem avatar
-                    onPress={() => navigation.navigate('Details', {
-                      login: user.node.login
-                    })}
-                    key={index}
-                    style={styles.listItemContainer}
-                  >
-                    <Left>
-                      {
-                        user.node.avatarUrl ?
-                        <Thumbnail source={{ uri: user.node.avatarUrl }} />
-                        :
-                        <Thumbnail source={require('../Images/github-icon.png')} />
-                      }
-                    </Left>
-                    <Body style={styles.listItemBody}>
-                      <Text>
-                        {user.node.name}, {user.node.location}
-                      </Text>
-                      <Text note>{user.node.login}</Text>
-                    </Body>
-                </ListItem>
+                  <UserItem key={index} navigation={navigation} login={user.node.login} avatar={user.node.avatarUrl} name={user.node.name} location={user.node.location}/>
                 ))
               }
             </List>

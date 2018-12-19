@@ -3,11 +3,10 @@ import {  ActivityIndicator } from 'react-native';
 import {Text, List, Right, ListItem, Body, Content, Container} from 'native-base';
 import GET_REPOS from '../Querys/getRepos';
 import { Query } from "react-apollo";
-import styles from '../Styles/ListItemRepoStyle';
 import RepoItem from './RepoItem';
 
 
-const ReposList = ({login, navigation}) => (
+const ReposList = ({login}) => (
   <Query
     query={GET_REPOS} variables={{login}}
   >
