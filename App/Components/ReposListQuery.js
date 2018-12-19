@@ -29,7 +29,7 @@ const ReposList = ({login, navigation}) => (
                     <Text note>{repo.description}</Text>
                   </Body>
                   <Right>
-                    <Text>{repo.pullRequests.totalCount}</Text>
+                    <Text>PR Count: {repo.pullRequests.totalCount}</Text>
                   </Right>
               </ListItem>
               ))
