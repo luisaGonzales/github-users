@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text, List, Left, ListItem, Thumbnail, Body, Content} from 'native-base';
+import {  ActivityIndicator } from 'react-native';
+import {Text, List, Left, ListItem, Thumbnail, Body, Content, View} from 'native-base';
 import GET_USERS from '../Querys/getUsers';
 import { Query } from "react-apollo";
 import styles from '../Styles/ListItemStyles';
@@ -10,7 +11,7 @@ const UsersList = ({user, navigation}) => (
   >
     {({ loading, error, data }) => {
       if (loading) {
-        return <Text>Loading...</Text>;
+        return <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/>
       }
       if (error) {
         console.warn(error)
@@ -36,7 +37,12 @@ const UsersList = ({user, navigation}) => (
                     style={styles.listItemContainer}
                   >
                     <Left>
-                      <Thumbnail source={{ uri: user.node.avatarUrl }} />
+                      {
+                        user.node.avatarUrl ?
+                        <Thumbnail source={{ uri: user.node.avatarUrl }} />
+                        :
+                        <Thumbnail source={require('../Images/github-icon.png')} />
+                      }
                     </Left>
                     <Body style={styles.listItemBody}>
                       <Text>

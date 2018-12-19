@@ -1,41 +1,32 @@
 import React from 'react';
-import {Text, List, Left, Right, ListItem, Body, Content} from 'native-base';
+import {  ActivityIndicator } from 'react-native';
+import {Text, List, Right, ListItem, Body, Content, Container} from 'native-base';
 import GET_REPOS from '../Querys/getRepos';
 import { Query } from "react-apollo";
 import styles from '../Styles/ListItemRepoStyle';
+import RepoItem from './RepoItem';
+
 
 const ReposList = ({login, navigation}) => (
   <Query
     query={GET_REPOS} variables={{login}}
   >
     {({ loading, error, data }) => {
-      if (loading) return <Text>Loading...</Text>;
+      if (loading) {
+        return <ActivityIndicator size="large" color="#333" style={{flex: 1, alignSelf: "center"}} />
+      }
       if (error) {
         console.warn(error)
         return <Text>Error :(</Text>;
       }
-      console.log(data.user.repositories.nodes.length)
       return (
         <Content>
          <List>
          {
           data.user.repositories.nodes.map((repo, index) => (
-              <ListItem avatar
-                  key={index}
-                  style={styles.listItemRepoContainer }
-                >
-                  <Body style={styles.noneBorder}>
-                    <Text>
-                      {repo.name}
-                    </Text>
-                    <Text style={styles.subtitle} note>{repo.description}</Text>
-                  </Body>
-                  <Right style={styles.noneBorder}>
-                    <Text style={styles.subtitle}>PR Count: {repo.pullRequests.totalCount}</Text>
-                  </Right>
-              </ListItem>
-              ))
-            }
+            <RepoItem name={repo.name} description={repo.description} pullRequests={repo.pullRequests.totalCount} key={index} />
+          ))
+          }
          </List>
         </Content>
       )
