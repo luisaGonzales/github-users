@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Text, Container, View, Item, Input, Icon} from 'native-base';
-import UsersList from '../Components/UsersListQuery'; 
 import styles from '../Styles/HomeScreenStyles';
 import UserData from '../Components/UsersListQuery';
 
