@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {  ActivityIndicator } from 'react-native';
 import {Text, List, Left, ListItem, Thumbnail, Body, Content, View} from 'native-base';
 import GET_USERS from '../Querys/getUsers';
-import { Query } from "react-apollo";
+import { Query, graphql, compose } from "react-apollo";
 import UserItem from './UserItem';
 
 const UsersList = ({user, navigation}) => (
@@ -44,4 +44,33 @@ const UsersList = ({user, navigation}) => (
   </Query>
 );
 
-export default UsersList
+class UserList extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentWillReceiveProps(props){
+    console.log(".----", props)
+  }
+
+  render(){
+    return(
+      <Text>Works props</Text>
+    )
+  }
+
+}
+
+const UserData = graphql(GET_USERS, {
+  options: props => ({
+    variables: {
+      user: props.user
+    }
+  }),
+  props: ({ data: { loading, search, error } }) => ({
+    loading, error, search
+  }),
+})
+
+
+export default compose(UserData)(UserList)
