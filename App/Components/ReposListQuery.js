@@ -1,36 +1,56 @@
-import React from 'react';
-import {  ActivityIndicator } from 'react-native';
-import {Text, List, Right, ListItem, Body, Content, Container} from 'native-base';
+import React, { Component } from 'react';
+import {  ActivityIndicator, FlatList } from 'react-native';
+import {Text, List, View, Content, Container} from 'native-base';
 import GET_REPOS from '../Querys/getRepos';
-import { Query } from "react-apollo";
+import { Query, graphql, compose } from "react-apollo";
 import RepoItem from './RepoItem';
 
+class RepoList extends Component {
+  constructor(props) {
+    super(props)
+  }
 
-const ReposList = ({login}) => (
-  <Query
-    query={GET_REPOS} variables={{login}}
-  >
-    {({ loading, error, data }) => {
-      if (loading) {
-        return <ActivityIndicator size="large" color="#333" style={{flex: 1, alignSelf: "center"}} />
-      }
-      if (error) {
-        console.warn(error)
-        return <Text>Error :(</Text>;
-      }
-      return (
-        <Content>
-         <List>
-          {
-            data.user.repositories.nodes.map((repo, index) => (
-              <RepoItem name={repo.name} description={repo.description} pullRequests={repo.pullRequests.totalCount} key={index} />
-            ))
-          }
-         </List>
-        </Content>
-      )
-    }}
-  </Query>
-);
+  renderItem = ({ item: repository }) => (
+    <RepoItem 
+      name={repository.name} 
+      description={repository.description} 
+      pullRequests={repository.pullRequests.totalCount} 
+    />
+  )
 
-export default ReposList
+  keyExtractor = (item, index) => index.toString();
+
+  render(){
+    console.log(this.props)
+    return(
+      <Container>
+        {
+          this.props.loading
+          ?
+          <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/>
+          :
+          <FlatList
+            data={this.props.user.repositories.nodes}
+            renderItem={this.renderItem}
+            keyExtractor={this.keyExtractor} 
+            onEndReachedThreshold={1}
+            ListEmptyComponent={<View />}
+          />
+        }
+      </Container>
+    )
+  }
+}
+
+const RepoData = graphql(GET_REPOS, {
+  options: props => ({
+    variables: {
+      login: props.login
+    }
+  }),
+  props: ({ data: { loading, user, error } }) => ({
+    loading, error, user
+  }),
+})
+
+export default compose(RepoData)(RepoList)

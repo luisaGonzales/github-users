@@ -34,8 +34,7 @@ class UserList extends Component {
               renderItem={this.renderItem}
               keyExtractor={user => user.node.login} 
               onEndReachedThreshold={1}
-              ListEmptyComponent={<View />
-              }
+              ListEmptyComponent={<View />}
             />
         }
       </Container>

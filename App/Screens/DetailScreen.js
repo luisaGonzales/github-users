@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, Container} from 'native-base';
 import ReposList from './../Components/ReposListQuery';
-
+import RepoData from './../Components/ReposListQuery';
 
 class DetailsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -15,7 +15,7 @@ class DetailsScreen extends Component {
 
     return (
       <Container>
-        <ReposList login={login} />
+        <RepoData login={login} />
       </Container>
     );
   }
