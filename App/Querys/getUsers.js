@@ -1,9 +1,10 @@
 import gql from "graphql-tag";
 
-const GET_USERS = gql`
+export const GET_USERS = gql`
   query SearchUsers($user: String!){
-    search(query: $user, type: USER, first: 50) {
+    search(query: $user, type: USER, first: 20) {
       edges {
+        cursor
         node {
           ... on User {
             name
@@ -17,4 +18,20 @@ const GET_USERS = gql`
   }
 `;
 
-export default GET_USERS;
+export const FETCH_USERS = gql`
+query SearchUsers($user: String!, $cursor: String){
+  search(query: $user, type: USER, first: 20, after: $cursor) {
+    edges {
+      cursor
+      node {
+        ... on User {
+          name
+          avatarUrl
+          location
+          login
+        }
+      }
+    }
+  }
+}
+`;
