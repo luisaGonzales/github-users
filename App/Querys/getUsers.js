@@ -1,8 +1,9 @@
 import gql from "graphql-tag";
 
-const GET_USERS = gql`
-  query SearchUsers($user: String!){
-    search(query: $user, type: USER, first: 20) {
+export const counter = 20;
+export const GET_USERS = gql`
+  query SearchUsers($user: String!, $cursor: String, $counter: Int){
+    search(query: $user, type: USER, first: $counter, after: $cursor) {
       edges {
         cursor
         node {
@@ -17,5 +18,3 @@ const GET_USERS = gql`
     }
   }
 `;
-
-export default GET_USERS;

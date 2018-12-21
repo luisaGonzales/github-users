@@ -10,7 +10,10 @@ class HomeScreen extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {text: undefined};
+    this.state = {
+      text: undefined,
+      cursor: null
+    };
   }
 
   render() {
@@ -27,13 +30,21 @@ class HomeScreen extends Component {
               placeholder='Search Github Users'
               placeholderTextColor="#949494"
               onChangeText={(text) => {
-                this.setState({text})
+                this.setState({
+                  text: text,
+                })
               }}
               />
           </Item>
         </View>
         {
-          this.state.text != undefined && <UserData user={this.state.text} navigation={this.props.navigation}/>
+          this.state.text != undefined 
+            && 
+          <UserData 
+            user={this.state.text} 
+            navigation={this.props.navigation} 
+            cursor={this.state.cursor}
+            />
         }
       </Container>
     );
