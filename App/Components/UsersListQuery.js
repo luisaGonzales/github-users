@@ -16,10 +16,12 @@ class UserList extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if(!props.loading && props.search != undefined && this.props.user != '' && this.props.name == props.name ) {
+    if(!props.loading && props.search != undefined && this.props.user != '' && this.props.name == props.name ) {    
+
       let users = props.search.edges.length;
       let cursor = props.search.edges[users - 1].cursor;
-      let data = this.state.data.concat(props.search.edges)
+      let data = this.state.data.concat(props.search.edges);
+      
       this.setState({
         users: users,
         cursor: cursor,
@@ -36,15 +38,25 @@ class UserList extends Component {
     }
   }
 
-  renderItem = ({ item: user }) => (
-    <UserItem 
-      login={user.node.login} 
-      avatar={user.node.avatarUrl} 
-      name={user.node.name} 
-      location={user.node.location}
-      navigation={this.props.navigation}
+  renderItem = ({ item: user }) => {
+    if (Object.keys(user.node).length === 0 ) {
+      return <UserItem 
+        login={ "No user login" } 
+        avatar={user.node.avatarUrl} 
+        name={ "No name" } 
+        location={ "No location" }
+        navigation={this.props.navigation}
       />
-  )
+    } else {
+      return <UserItem 
+        login={user.node.login } 
+        avatar={user.node.avatarUrl} 
+        name={user.node.name} 
+        location={user.node.location}
+        navigation={this.props.navigation}
+      />
+    }
+  }
 
   render() { 
     return(

@@ -10,14 +10,18 @@ class UserItem extends Component {
   render() {
     return (
       <ListItem avatar
-          onPress={() => this.props.navigation.navigate('Details', {
-            login: this.props.login
-          })}
+          onPress={() => {
+            if (this.props.login != "No user login") {
+              this.props.navigation.navigate('Details', {
+                login: this.props.login
+              })
+            }
+          }}
           style={styles.listItemContainer}
         >
           <Left>
             {
-              this.props.avatar ?
+              this.props.avatar != null?
               <Thumbnail source={{ uri: this.props.avatar }} />
               :
               <Thumbnail source={require('../Images/github-icon.png')} />
@@ -25,7 +29,7 @@ class UserItem extends Component {
           </Left>
           <Body style={styles.listItemBody}>
             <Text>
-              {this.props.name}, {this.props.location}
+              { this.props.name }, { this.props.location }
             </Text>
             <Text note>{this.props.login}</Text>
           </Body>
