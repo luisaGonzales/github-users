@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
 import { View, Container } from 'native-base';
-import { GET_USERS, counter } from '../Querys/getUsers';
+import GET_USERS, { counter } from '../Querys/getUsers';
 import { graphql, compose } from "react-apollo";
 import UserItem from './UserItem';
 

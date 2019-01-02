@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import {  ActivityIndicator, FlatList } from 'react-native';
-import {Text, List, View, Content, Container} from 'native-base';
-import GET_REPOS from '../Querys/getRepos';
-import { Query, graphql, compose } from "react-apollo";
+import { View, Container, Text} from 'native-base';
+import GET_REPOS, { count }from '../Querys/getRepos';
+import { graphql, compose } from "react-apollo";
 import RepoItem from './RepoItem';
 
 class RepoList extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      repos: 0,
+      data: [],
+      cursor: ''
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    console.log(props)
+    
   }
 
   renderItem = ({ item: repository }) => (
     <RepoItem 
-      name={repository.name} 
-      description={repository.description} 
-      pullRequests={repository.pullRequests.totalCount} 
+      name={repository.node.name} 
+      description={repository.node.description} 
+      pullRequests={repository.node.pullRequests.totalCount} 
     />
   )
 
   keyExtractor = (item, index) => index.toString();
 
   render(){
-    console.log(this.props)
     return(
       <Container>
         {
@@ -30,11 +39,16 @@ class RepoList extends Component {
           <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/>
           :
           <FlatList
-            data={this.props.user.repositories.nodes}
+            data={this.props.user.repositories.edges}
             renderItem={this.renderItem}
             keyExtractor={this.keyExtractor} 
             onEndReachedThreshold={1}
+            onEndReached={()=>{
+              console.log("on reach end");
+              
+            }}
             ListEmptyComponent={<View />}
+            ListFooterComponent={this.props.loading ? <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/> : <View />}
           />
         }
       </Container>
@@ -45,7 +59,9 @@ class RepoList extends Component {
 const RepoData = graphql(GET_REPOS, {
   options: props => ({
     variables: {
-      login: props.login
+      login: props.login,
+      cursor: null,
+      count: count
     }
   }),
   props: ({ data: { loading, user, error } }) => ({
