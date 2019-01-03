@@ -21,7 +21,7 @@ class UserList extends Component {
       let users = props.search.edges.length;
       let cursor = props.search.edges[users - 1].cursor;
       let data = this.state.data.concat(props.search.edges);
-      console.log("aqui las prop", props) 
+      
       this.setState({
         users: users,
         cursor: cursor,
