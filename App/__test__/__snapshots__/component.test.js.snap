@@ -1,0 +1,489 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic Render User Item 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+>
+  <View
+    avatar={true}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderBottomWidth": null,
+          "borderColor": "#c9c9c9",
+          "flexDirection": "row",
+          "marginLeft": 16,
+          "paddingBottom": null,
+          "paddingRight": null,
+          "paddingTop": null,
+        },
+        Object {
+          "borderBottomWidth": 1,
+          "borderColor": "#ececec",
+          "marginLeft": -16,
+          "paddingBottom": 16,
+          "paddingLeft": 32,
+          "paddingTop": 0,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "alignSelf": "flex-start",
+          "flex": 0,
+          "flexDirection": "row",
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../App/Images/github-icon.png",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 28,
+            "height": 56,
+            "width": 56,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": null,
+            "alignSelf": null,
+            "borderBottomWidth": 0.5,
+            "borderColor": "#c9c9c9",
+            "flex": 1,
+            "marginLeft": 15,
+            "paddingBottom": 10,
+            "paddingTop": 10,
+          },
+          Object {
+            "borderBottomColor": "transparent",
+            "paddingTop": 16,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No name
+        , 
+        No location
+      </Text>
+      <Text
+        note={true}
+        style={
+          Object {
+            "color": "#808080",
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "200",
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No user login
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Basic Render User Item 2`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+>
+  <View
+    avatar={true}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderBottomWidth": null,
+          "borderColor": "#c9c9c9",
+          "flexDirection": "row",
+          "marginLeft": 16,
+          "paddingBottom": null,
+          "paddingRight": null,
+          "paddingTop": null,
+        },
+        Object {
+          "borderBottomWidth": 1,
+          "borderColor": "#ececec",
+          "marginLeft": -16,
+          "paddingBottom": 16,
+          "paddingLeft": 32,
+          "paddingTop": 0,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "alignSelf": "flex-start",
+          "flex": 0,
+          "flexDirection": "row",
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../App/Images/github-icon.png",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 28,
+            "height": 56,
+            "width": 56,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": null,
+            "alignSelf": null,
+            "borderBottomWidth": 0.5,
+            "borderColor": "#c9c9c9",
+            "flex": 1,
+            "marginLeft": 15,
+            "paddingBottom": 10,
+            "paddingTop": 10,
+          },
+          Object {
+            "borderBottomColor": "transparent",
+            "paddingTop": 16,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No name
+        , 
+        No location
+      </Text>
+      <Text
+        note={true}
+        style={
+          Object {
+            "color": "#808080",
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "200",
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No user login
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+>
+  <View
+    avatar={true}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderBottomWidth": null,
+          "borderColor": "#c9c9c9",
+          "flexDirection": "row",
+          "marginLeft": 16,
+          "paddingBottom": null,
+          "paddingRight": null,
+          "paddingTop": null,
+        },
+        Object {
+          "borderBottomWidth": 1,
+          "borderColor": "#ececec",
+          "marginLeft": -16,
+          "paddingBottom": 16,
+          "paddingLeft": 32,
+          "paddingTop": 0,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "alignSelf": "flex-start",
+          "flex": 0,
+          "flexDirection": "row",
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../App/Images/github-icon.png",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 28,
+            "height": 56,
+            "width": 56,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": null,
+            "alignSelf": null,
+            "borderBottomWidth": 0.5,
+            "borderColor": "#c9c9c9",
+            "flex": 1,
+            "marginLeft": 15,
+            "paddingBottom": 10,
+            "paddingTop": 10,
+          },
+          Object {
+            "borderBottomColor": "transparent",
+            "paddingTop": 16,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No name
+        , 
+        No location
+      </Text>
+      <Text
+        note={true}
+        style={
+          Object {
+            "color": "#808080",
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "200",
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No user login
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders correctly 2`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+>
+  <View
+    avatar={true}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderBottomWidth": null,
+          "borderColor": "#c9c9c9",
+          "flexDirection": "row",
+          "marginLeft": 16,
+          "paddingBottom": null,
+          "paddingRight": null,
+          "paddingTop": null,
+        },
+        Object {
+          "borderBottomWidth": 1,
+          "borderColor": "#ececec",
+          "marginLeft": -16,
+          "paddingBottom": 16,
+          "paddingLeft": 32,
+          "paddingTop": 0,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "alignSelf": "flex-start",
+          "flex": 0,
+          "flexDirection": "row",
+          "paddingTop": 14,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../App/Images/github-icon.png",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 28,
+            "height": 56,
+            "width": 56,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": null,
+            "alignSelf": null,
+            "borderBottomWidth": 0.5,
+            "borderColor": "#c9c9c9",
+            "flex": 1,
+            "marginLeft": 15,
+            "paddingBottom": 10,
+            "paddingTop": 10,
+          },
+          Object {
+            "borderBottomColor": "transparent",
+            "paddingTop": 16,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No name
+        , 
+        No location
+      </Text>
+      <Text
+        note={true}
+        style={
+          Object {
+            "color": "#808080",
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "200",
+            "marginLeft": null,
+            "marginRight": 10,
+          }
+        }
+        uppercase={false}
+      >
+        No user login
+      </Text>
+    </View>
+  </View>
+</View>
+`;
