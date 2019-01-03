@@ -6,7 +6,7 @@ import token from '../../config';
 import {InMemoryCache} from 'apollo-cache-inmemory'
 
 
-const client = new ApolloClient(
+export const client = new ApolloClient(
   {
     uri: 'https://api.github.com/graphql',
     headers: {
