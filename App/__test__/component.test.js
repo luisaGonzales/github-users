@@ -3,6 +3,11 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import UserItem from '../Components/UserItem';
 import RepoItem from '../Components/RepoItem';
+import { ApolloProvider } from 'react-apollo';
+import { MockedProvider } from '../../node_modules/react-apollo/test-utils';
+
+import UserList from '../Components/UsersListQuery';
+import GET_USERS from '../Querys/getUsers';
 
 test('Render user item with null data', () => {
   const userItemNull = renderer.create(
@@ -37,5 +42,8 @@ test('Render repo item', () => {
     />
   ).toJSON();
   expect(repoItem).toMatchSnapshot();
-})
+});
+
+
+
 
