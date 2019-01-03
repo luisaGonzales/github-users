@@ -16,7 +16,7 @@ class RepoList extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(props)
+    console.log("this are props on list", props)
     
   }
 
