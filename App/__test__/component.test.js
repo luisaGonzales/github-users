@@ -3,17 +3,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import UserItem from '../Components/UserItem';
 import RepoItem from '../Components/RepoItem';
-import { ApolloProvider } from 'react-apollo';
 import { MockedProvider } from '../../node_modules/react-apollo/test-utils';
-import token from '../../config';
-import ApolloClient from "apollo-boost";
-import {InMemoryCache} from 'apollo-cache-inmemory'
-
-import UserList from '../Components/UsersListQuery';
-import RepoList from '../Components/ReposListQuery';
 import GET_USERS from '../Querys/getUsers';
 import GET_REPOS from '../Querys/getRepos';
-import 'isomorphic-fetch';
+
 
 //Testing render items
 test('Render user item with null data', () => {
@@ -65,44 +58,6 @@ test('Check properties ', () => {
   expect(UserItem).toHaveProperty("name");
 });
 
-
-
-const client = new ApolloClient(
-  {
-    uri: 'https://api.github.com/graphql',
-    headers: {
-      authorization: `Bearer ${token}`
-    },
-    cache: new InMemoryCache({
-      dataIdFromObject: obj => obj.id,
-      addTypename: false,
-      fragmentMatcher: {
-        match: ({ id }, typeCond, context) => !!context.store.get(id)
-      }
-    })
-  }
-  
-);
-
-test('User list query', () => {
-  const userList = renderer.create(
-    <ApolloProvider client={ client } >  
-      <UserList user={"Luisa"}/>
-    </ ApolloProvider>
-  ).toJSON();
-
-  expect(userList).toMatchSnapshot()
-})
-
-test('Repo list query', () => {
-  const userList = renderer.create(
-    <ApolloProvider client={ client } >  
-      <RepoList login={"luisaGonzales"}/>
-    </ ApolloProvider>
-  ).toJSON();
-
-  expect(userList).toMatchSnapshot()
-})
 
 
 
