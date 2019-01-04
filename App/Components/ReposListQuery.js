@@ -16,8 +16,17 @@ class RepoList extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log("this are props on list", props)
-    
+    if( !props.loading ) {
+      let repos = props.user.repositories.edges.length;
+      let cursor = props.user.repositories.edges[repos - 1].cursor;
+      let data = this.state.data.concat(props.user.repositories.edges);
+
+      this.setState({
+        repos: repos,
+        cursor: cursor,
+        data: data
+      })
+    }
   }
 
   renderItem = ({ item: repository }) => (
@@ -39,13 +48,32 @@ class RepoList extends Component {
           <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/>
           :
           <FlatList
-            data={this.props.user.repositories.edges}
+            data={this.state.data}
             renderItem={this.renderItem}
             keyExtractor={this.keyExtractor} 
             onEndReachedThreshold={1}
             onEndReached={()=>{
-              console.log("on reach end");
-              
+              if(this.state.repos == count) {
+                this.props.fetchMore({
+                  variables: {
+                    login: this.props.login,
+                    cursor: this.state.cursor,
+                    count: count
+                  },
+                  updateQuery: (prev, { fetchMoreResult }) => {
+                    if( !fetchMoreResult ) return prev;
+                    let data = [...this.state.data, ...fetchMoreResult.user.repositories.edges]
+                    let cursor = data[data.length - 1].cursor;
+                    this.setState({
+                      data: data,
+                      cursor: cursor
+                    })
+                    return Object.assign({}, prev, {
+                      edges: [...prev.user.repositories.edges, ...fetchMoreResult.user.repositories.edges]
+                    })
+                  }
+                })
+              }
             }}
             ListEmptyComponent={<View />}
             ListFooterComponent={this.props.loading ? <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/> : <View />}
@@ -64,8 +92,8 @@ const RepoData = graphql(GET_REPOS, {
       count: count
     }
   }),
-  props: ({ data: { loading, user, error } }) => ({
-    loading, error, user
+  props: ({ data: { loading, user, error, fetchMore } }) => ({
+    loading, error, user, fetchMore
   }),
 })
 
