@@ -10,6 +10,9 @@ import token from '../../config';
 import { ApolloProvider } from 'react-apollo';
 import { MockedProvider } from '../../node_modules/react-apollo/test-utils';
 
+import GET_USERS from '../Querys/getUsers';
+
+
 const client = new ApolloClient(
   {
     uri: 'https://api.github.com/graphql',
@@ -47,6 +50,8 @@ test('Repo list query', async () => {
   expect(userList).toMatchSnapshot()
 });
 
+//Test with mocks
+//Render without errors
 test("render without error user list", async () => {
   renderer.create(
     <MockedProvider mocks={[]}>
@@ -62,4 +67,46 @@ test("render without error repo list", async () => {
     </MockedProvider>
   );
 });
+
+//Mocks
+
+const mocks = [
+  {
+    request: {
+      query: GET_USERS,
+      variables: {
+        user: 'Luisa',
+        counter: 1
+      },
+    },
+    result: {
+      "data": {
+        "search": {
+          "edges": [
+            {
+              "cursor": "Y3Vyc29yOjE=",
+              "node": {
+                "name": "Luis Antonio González Martí",
+                "location": "Madrid, Spain",
+                "login": "Luisangonzalez",
+                "avatarUrl": "https://avatars3.githubusercontent.com/u/1648046?v=4"
+              }
+            }
+          ]
+        }
+      }
+    },
+  },
+];
+
+test('UserList query without error', () => {
+  renderer.create(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <UserList />
+    </MockedProvider>,
+  );
+});
+
+
+
 
