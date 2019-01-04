@@ -9,8 +9,10 @@ import ApolloClient from "apollo-boost";
 import token from '../../config';
 import { ApolloProvider } from 'react-apollo';
 import { MockedProvider } from '../../node_modules/react-apollo/test-utils';
+import wait from "waait";
 
 import GET_USERS from '../Querys/getUsers';
+import GET_REPOS from '../Querys/getRepos';
 
 
 const client = new ApolloClient(
@@ -70,7 +72,7 @@ test("render without error repo list", async () => {
 
 //Mocks
 
-const mocks = [
+const userMocks = [
   {
     request: {
       query: GET_USERS,
@@ -99,14 +101,54 @@ const mocks = [
   },
 ];
 
+const repoMocks = [
+  {
+    request: {
+      query: GET_REPOS,
+      variables: {
+        login: 'luisaGonzales',
+        counter: 1
+      },
+    },
+    result: {
+      "data": {
+        "user": {
+          "repositories": {
+            "edges": [
+              {
+                "cursor": "Y3Vyc29yOnYyOpHOBa7Cug==",
+                "node": {
+                  "name": "Ejercicios-Objetos",
+                  "description": "Solución de los tres ejercicios del tema de objetos",
+                  "pullRequests": {
+                    "totalCount": 0
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+  },
+];
+
 test('UserList query without error', () => {
-  renderer.create(
-    <MockedProvider mocks={mocks} addTypename={false}>
+  const userListMock = renderer.create(
+    <MockedProvider mocks={userMocks} addTypename={false}>
       <UserList />
     </MockedProvider>,
-  );
+  ).toJSON();
+  expect(userListMock).toMatchSnapshot();
 });
 
-
+test('RepoList query without error', () => {
+  const repoListMock = renderer.create(
+    <MockedProvider mocks={repoMocks} addTypename={false}>
+      <RepoList />
+    </MockedProvider>,
+  );
+  expect(repoListMock).toMatchSnapshot();
+});
 
 

@@ -25,7 +25,114 @@ exports[`Repo list query 1`] = `
 </View>
 `;
 
+exports[`RepoList query without error 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "height": 1334,
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#333"
+    hidesWhenStopped={true}
+    size="large"
+    style={
+      Object {
+        "alignSelf": "center",
+        "flex": 1,
+      }
+    }
+  />
+</View>
+`;
+
 exports[`User list query 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "height": 1334,
+    }
+  }
+>
+  <RCTScrollView
+    ListEmptyComponent={<Styled(ViewNB) />}
+    ListFooterComponent={
+      <ActivityIndicator
+        animating={true}
+        color="#333"
+        hidesWhenStopped={true}
+        size="large"
+        style={
+          Object {
+            "alignSelf": "center",
+            "flex": 1,
+          }
+        }
+      />
+    }
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={1}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Array [
+            Object {},
+            undefined,
+            null,
+          ]
+        }
+      />
+      <View
+        onLayout={[Function]}
+      >
+        <ActivityIndicator
+          animating={true}
+          color="#333"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "alignSelf": "center",
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`UserList query without error 1`] = `
 <View
   style={
     Object {

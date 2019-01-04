@@ -16,7 +16,8 @@
     "react-apollo": "^2.3.3",
     "react-native": "0.57.8",
     "react-native-gesture-handler": "^1.0.12",
-    "react-navigation": "^3.0.8"
+    "react-navigation": "^3.0.8",
+    "waait": "^1.0.2"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.2.3",
@@ -39,6 +40,8 @@
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react|native-base|react-navigation|native-base-shoutem-theme|@shoutem/theme|@shoutem/animation|@shoutem/ui|tcomb-form-native|react-native-gesture-handler)"
     ],
-    "transform": { "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js" }
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    }
   }
 }
