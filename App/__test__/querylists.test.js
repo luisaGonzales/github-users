@@ -1,4 +1,5 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import renderer from 'react-test-renderer';
 import UserList from '../Components/UsersListQuery';
 import RepoList from '../Components/ReposListQuery';
@@ -7,6 +8,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import ApolloClient from "apollo-boost";
 import token from '../../config';
 import { ApolloProvider } from 'react-apollo';
+import { MockedProvider } from '../../node_modules/react-apollo/test-utils';
 
 const client = new ApolloClient(
   {
@@ -43,4 +45,12 @@ test('Repo list query', async () => {
   ).toJSON();
 
   expect(userList).toMatchSnapshot()
+});
+
+test("render without error user list", async () => {
+  renderer.create(
+    <MockedProvider mocks={[]}>
+      <UserList />
+    </MockedProvider>
+  );
 });

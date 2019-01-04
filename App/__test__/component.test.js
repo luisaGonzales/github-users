@@ -3,10 +3,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import UserItem from '../Components/UserItem';
 import RepoItem from '../Components/RepoItem';
-import { MockedProvider } from '../../node_modules/react-apollo/test-utils';
 import GET_USERS from '../Querys/getUsers';
 import GET_REPOS from '../Querys/getRepos';
-
 
 //Testing render items
 test('Render user item with null data', () => {
@@ -57,7 +55,6 @@ test('Get repos query without errors', () => {
 test('Check properties ', () => {
   expect(UserItem).toHaveProperty("name");
 });
-
 
 
 
