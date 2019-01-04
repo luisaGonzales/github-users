@@ -15,8 +15,9 @@ class RepoList extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
-    if( !props.loading ) {
+  componentWillReceiveProps(props) {    
+
+    if( !props.loading && props.error == undefined ) {
       let repos = props.user.repositories.edges.length;
       let cursor = props.user.repositories.edges[repos - 1].cursor;
       let data = this.state.data.concat(props.user.repositories.edges);
@@ -24,9 +25,16 @@ class RepoList extends Component {
       this.setState({
         repos: repos,
         cursor: cursor,
-        data: data
+        data: data,
+        error: undefined
       })
     }
+    else {
+      this.setState({
+        error: this.props.error,
+      })
+    }
+
   }
 
   renderItem = ({ item: repository }) => (
@@ -39,6 +47,52 @@ class RepoList extends Component {
 
   keyExtractor = (item, index) => index.toString();
 
+  renderContent(){
+    if(this.props.error == undefined) {
+      return (
+        <FlatList
+          data={this.state.data}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor} 
+          onEndReachedThreshold={1}
+          onEndReached={()=>{
+            if(this.state.repos == count) {
+              this.props.fetchMore({
+                variables: {
+                  login: this.props.login,
+                  cursor: this.state.cursor,
+                  count: count
+                },
+                updateQuery: (prev, { fetchMoreResult }) => {
+                  if( !fetchMoreResult ) return prev;
+                  let data = [...this.state.data, ...fetchMoreResult.user.repositories.edges]
+                  let cursor = data[data.length - 1].cursor;
+                  this.setState({
+                    data: data,
+                    cursor: cursor
+                  })
+                  return Object.assign({}, prev, {
+                    edges: [...prev.user.repositories.edges, ...fetchMoreResult.user.repositories.edges]
+                  })
+                }
+              })
+            }
+          }}
+          ListEmptyComponent={<View />}
+          ListFooterComponent={this.props.loading ? <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/> : <View />}
+        />
+      )
+    } else {
+      return ( 
+        <Container style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}} >
+          <Text>
+            Sorry! {this.state.error}
+          </Text>
+        </Container>
+      )
+    }
+  }
+
   render(){
     return(
       <Container>
@@ -47,37 +101,7 @@ class RepoList extends Component {
           ?
           <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/>
           :
-          <FlatList
-            data={this.state.data}
-            renderItem={this.renderItem}
-            keyExtractor={this.keyExtractor} 
-            onEndReachedThreshold={1}
-            onEndReached={()=>{
-              if(this.state.repos == count) {
-                this.props.fetchMore({
-                  variables: {
-                    login: this.props.login,
-                    cursor: this.state.cursor,
-                    count: count
-                  },
-                  updateQuery: (prev, { fetchMoreResult }) => {
-                    if( !fetchMoreResult ) return prev;
-                    let data = [...this.state.data, ...fetchMoreResult.user.repositories.edges]
-                    let cursor = data[data.length - 1].cursor;
-                    this.setState({
-                      data: data,
-                      cursor: cursor
-                    })
-                    return Object.assign({}, prev, {
-                      edges: [...prev.user.repositories.edges, ...fetchMoreResult.user.repositories.edges]
-                    })
-                  }
-                })
-              }
-            }}
-            ListEmptyComponent={<View />}
-            ListFooterComponent={this.props.loading ? <ActivityIndicator size="large" color="#333" style={{flex:1, alignSelf: "center"}}/> : <View />}
-          />
+          this.renderContent()
         }
       </Container>
     )

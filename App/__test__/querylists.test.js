@@ -54,3 +54,12 @@ test("render without error user list", async () => {
     </MockedProvider>
   );
 });
+
+test("render without error repo list", async () => {
+  renderer.create(
+    <MockedProvider mocks={[]}>
+      <RepoList />
+    </MockedProvider>
+  );
+});
+
